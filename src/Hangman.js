@@ -9,8 +9,9 @@ import img4 from "./img/4.png";
 import img5 from "./img/5.png";
 import img6 from "./img/6.png";
 
-class Hangman extends Component {
-  /** by default, allow 6 guesses and use provided gallow images. */
+
+export default class Hangman extends Component {
+  /** by default, allow 6 wrong guesses */
   static defaultProps = {
     maxWrong: 6,
     images: [img0, img1, img2, img3, img4, img5, img6]
@@ -23,19 +24,14 @@ class Hangman extends Component {
     this.reset = this.reset.bind(this);
   }
 
-  /** guessedWord: show current-state of word:
-    if guessed letters are {a,p,e}, show "app_e" for "apple"
-  */
+  /** show current-state of word: if guessed letters are {a,p,e}, show "app_e" for "apple" */
   guessedWord() {
     return this.state.answer
       .split("")
       .map(ltr => (this.state.guessed.has(ltr) ? ltr : "_"));
   }
 
-  /** handleGuess: handle a guessed letter:
-    - add to guessed letters
-    - if not in answer, increase number-wrong guesses
-  */
+  /** add to guessed letters: if letter not in answer, increase number-wrong guesses */
   handleGuess(e) {
     let ltr = e.target.value;
     this.setState(state => ({
@@ -44,7 +40,7 @@ class Hangman extends Component {
     }));
   }
 
-  /** generateButtons: return array of letter buttons to render */
+  /** return array of letter buttons to render */
   generateButtons() {
     return "abcdefghijklmnopqrstuvwxyz".split("").map(ltr => (
       <button
@@ -59,27 +55,30 @@ class Hangman extends Component {
   }
 
   reset() {
-    this.setState({ nWrong: 0, guessed: new Set(), answer: randomWord()})
+    this.setState({ nWrong: 0, guessed: new Set(), answer: randomWord() })
   }
 
 
-  /** render: render game */
+  /** render game */
   render() {
-    const gameOver = this.state.nWrong >= this.props.maxWrong;
-    const isWinner = this.guessedWord().join("") === this.state.answer;
-    const altText = `${this.state.nWrong}/${this.props.maxWrong} guesses`;
+    const { nWrong, answer } = this.state;
+    const { maxWrong, images } = this.props;
+
+    const gameOver = nWrong >= maxWrong;
+    const isWinner = this.guessedWord().join("") === answer;
+    const altText = `${nWrong}/${maxWrong} guesses`;
     let gameState = this.generateButtons();
 
-    if (isWinner) gameState = 'YOU WIN!!! PHEW~';
+    if (isWinner) gameState = 'YOU WIN!!! ~PHEW';
     if (gameOver) gameState = 'YOU LOSE... ';
 
     return (
       <div className='Hangman'>
         <h1>Hangman</h1>
-        <img src={this.props.images[this.state.nWrong]} alt={altText} />
-        <p># Wrong Guesses: {this.state.nWrong}</p>
+        <img src={images[nWrong]} alt={altText} />
+        <p># Wrong Guesses: {nWrong} / {maxWrong}</p>
         <p className='Hangman-word'>
-          {!gameOver ? this.guessedWord() : this.state.answer}
+          {!gameOver ? this.guessedWord() : answer}
         </p>
         <p className='Hangman-btns'>{gameState}</p>
         <button id="reset" onClick={this.reset}>Restart</button>
@@ -87,5 +86,3 @@ class Hangman extends Component {
     );
   }
 }
-
-export default Hangman;

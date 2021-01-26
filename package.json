@@ -1,6 +1,6 @@
 {
   "name": "hangman",
-  "homepage": "http://d00d1e.github.io/react-hangman",
+  "homepage": "https://d00d1e.github.io/react-hangman/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -1,12 +1,22 @@
 .Hangman {
-  width: 400px;
+  max-width: 100%;
+  width: 100%;
   color: #000;
   text-align: center;
-  zoom: 1.3;
+  padding: 1rem;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.Hangman img {
+  width: 10rem;
 }
 
 .Hangman h1 {
-  font-size: 4rem;
+  font-size: 2.8rem;
   font-weight: 100;
   margin-bottom: 0.1em;
   margin-top: 0;
@@ -14,9 +24,10 @@
 }
 
 .Hangman-word {
+  width: 100%;
   letter-spacing: 1em;
   margin: 1em -1em 0.5em 0;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .Hangman-btns {
@@ -29,7 +40,7 @@
 .Hangman button {
   border: none;
   font-family: inherit;
-  font-size: 2rem;
+  font-size: 1.5rem;
   cursor: pointer;
   width: 30px;
   margin: 5px 3px 2px 2px;
@@ -65,5 +76,5 @@
 
 #reset:hover {
   background-color: #ffc10799;
-  transform: scale(0.95)
+  transform: scale(0.95);
 }

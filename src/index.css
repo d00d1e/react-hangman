@@ -1,8 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Special+Elite&display=swap");
 
-body {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Special Elite', cursive;
+  font-family: "Special Elite", cursive;
+}
+
+html {
+  max-width: 100%;
+  max-height: 100%;
+  overscroll-behavior: none;
+}
+
+body {
+  font-size: calc(0.53rem + 0.53vw);
+  background: url("https://image.freepik.com/free-photo/view-white-crumpled-paper_1194-7544.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }

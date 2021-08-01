@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Hangman from "./Hangman";
-import "./App.css";
 
 export default class App extends Component {
   render() {
